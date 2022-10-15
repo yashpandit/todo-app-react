@@ -31,7 +31,12 @@ const TodoInput = (props: TodoInputProps) => {
 
   return (
     <form onSubmit={handleTodoSubmit}>
-      <input onChange={handleTodoChange} placeholder='Create a new todo..' />
+      <input
+        type='text'
+        name='todo-input'
+        onChange={handleTodoChange}
+        placeholder='Create a new todo..'
+      />
     </form>
   );
 };

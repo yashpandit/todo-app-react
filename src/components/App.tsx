@@ -4,6 +4,9 @@ import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import { Filter, Todo } from './types';
 
+const completedTodo = ({ isCompleted }: Todo) => isCompleted;
+const notCompletedTodo = ({ isCompleted }: Todo) => !isCompleted;
+
 function App() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [filter, setFilter] = useState<Filter>(Filter.ALL);
@@ -32,18 +35,17 @@ function App() {
     setTodoList(newTodos);
   };
 
-  const clearCompletedTodos = () =>
-    setTodoList((prev) => prev.filter(({ isCompleted }) => !isCompleted));
+  const clearCompletedTodos = () => setTodoList((prev) => prev.filter(notCompletedTodo));
 
   const onFilterChange = (newFilter: Filter) => setFilter(newFilter);
 
   const filteredTodos = (() => {
     if (filter === Filter.ACTIVE) {
-      return todoList.filter(({ isCompleted }) => !isCompleted);
+      return todoList.filter(notCompletedTodo);
     }
 
     if (filter === Filter.COMPLETED) {
-      return todoList.filter(({ isCompleted }) => isCompleted);
+      return todoList.filter(completedTodo);
     }
 
     return todoList;
@@ -54,7 +56,7 @@ function App() {
       <TodoInput onAddTodo={onAddTodo} />
       <TodoList todos={filteredTodos} onToggleTodo={onToggleTodo} />
       <div>
-        <div>{filteredTodos.filter(({ isCompleted }) => !isCompleted).length}</div>
+        <div>{filteredTodos.filter(notCompletedTodo).length} items left</div>
         <TodoFilters currentFilter={filter} updateFilter={onFilterChange} />
         <button onClick={clearCompletedTodos}>Clear completed</button>
       </div>

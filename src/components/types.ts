@@ -10,4 +10,10 @@ export enum Filter {
   COMPLETED,
 }
 
+export type FilterOption = {
+  id: string;
+  label: string;
+  value: Filter;
+};
+
 export default null;
