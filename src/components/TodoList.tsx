@@ -8,6 +8,10 @@ type TodoListProps = {
 const TodoList = (props: TodoListProps) => {
   const { todos, onToggleTodo } = props;
 
+  if (!todos.length) {
+    return <div>Add your first todo!</div>;
+  }
+
   return (
     <ul>
       {todos.map(({ isCompleted, title, id }) => (
