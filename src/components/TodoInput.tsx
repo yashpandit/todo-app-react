@@ -13,25 +13,32 @@ const TodoInput = (props: TodoInputProps) => {
    * using ref here instead of useState
    * as there is no need to re-render on value change
    */
-  const todoInputRef = useRef<string>('');
+  const todoInputRef = useRef<HTMLInputElement>(null);
 
   const handleTodoChange = (e: ChangeEvent<HTMLInputElement>) => {
-    todoInputRef.current = e.target.value;
+    if (todoInputRef.current) {
+      todoInputRef.current.value = e.target.value;
+    }
   };
 
   const handleTodoSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     onAddTodo({
-      title: todoInputRef.current,
+      title: todoInputRef.current?.value || '',
       isCompleted: false,
       id: uuid(),
     });
+
+    if (todoInputRef.current) {
+      todoInputRef.current.value = '';
+    }
   };
 
   return (
     <form onSubmit={handleTodoSubmit}>
       <input
+        ref={todoInputRef}
         type='text'
         name='todo-input'
         onChange={handleTodoChange}
