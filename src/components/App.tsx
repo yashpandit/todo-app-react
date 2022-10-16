@@ -51,12 +51,14 @@ function App() {
     return todoList;
   })();
 
+  const activeTodosCount = filteredTodos.filter(notCompletedTodo).length;
+
   return (
     <div>
       <TodoInput onAddTodo={onAddTodo} />
       <TodoList todos={filteredTodos} onToggleTodo={onToggleTodo} />
       <div>
-        <div>{filteredTodos.filter(notCompletedTodo).length} items left</div>
+        {activeTodosCount > 0 && <div>{activeTodosCount} items left</div>}
         <TodoFilters currentFilter={filter} updateFilter={onFilterChange} />
         <button onClick={clearCompletedTodos}>Clear completed</button>
       </div>
