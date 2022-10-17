@@ -1,0 +1,13 @@
+.list-container {
+  max-height: 310px;
+  overflow: auto;
+}
+
+.list-item {
+  padding: 20px;
+  border: 1px solid #444;
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

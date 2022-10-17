@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Filter, FilterOption } from './types';
+import './styles/TodoFilters.css';
 
 type TodoFiltersProps = {
   currentFilter: Filter;
@@ -34,11 +35,17 @@ const TodoFilters = (props: TodoFiltersProps) => {
           <input
             type='radio'
             name='todo-filter'
+            className='filter-option'
             checked={value === currentFilter}
             onChange={() => updateFilter(value)}
             id={id}
           />
-          <label htmlFor={id}>{label}</label>
+          <label
+            className={`${value === currentFilter ? 'filter-selected' : ''} filter-label`}
+            htmlFor={id}
+          >
+            {label}
+          </label>
         </Fragment>
       ))}
     </div>

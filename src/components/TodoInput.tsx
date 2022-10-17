@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent, useRef } from 'react';
 import uuid from 'react-uuid';
 import { Todo } from './types';
+import './styles/TodoInput.css';
 
 type TodoInputProps = {
   onAddTodo: (newTodo: Todo) => void;
@@ -43,6 +44,7 @@ const TodoInput = (props: TodoInputProps) => {
         name='todo-input'
         onChange={handleTodoChange}
         placeholder='Create a new todo..'
+        className='todo-input'
       />
     </form>
   );

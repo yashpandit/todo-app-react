@@ -3,6 +3,7 @@ import TodoFilters from './TodoFilters';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import { Filter, Todo } from './types';
+import './styles/App.css';
 
 const completedTodo = ({ isCompleted }: Todo) => isCompleted;
 const notCompletedTodo = ({ isCompleted }: Todo) => !isCompleted;
@@ -51,18 +52,16 @@ function App() {
     return todoList;
   })();
 
-  const showActiveTodosCount = filteredTodos.length > 0 && filter !== Filter.COMPLETED;
-
   return (
-    <div>
+    <div className='app-container'>
       <TodoInput onAddTodo={onAddTodo} />
       <TodoList todos={filteredTodos} onToggleTodo={onToggleTodo} />
-      <div>
-        {showActiveTodosCount && (
-          <div>{filteredTodos.filter(notCompletedTodo).length} items left</div>
-        )}
+      <div className='todo-actions-container'>
+        <p>{filteredTodos.filter(notCompletedTodo).length} items left</p>
         <TodoFilters currentFilter={filter} updateFilter={onFilterChange} />
-        <button onClick={clearCompletedTodos}>Clear completed</button>
+        <button className='clear-completed-btn' onClick={clearCompletedTodos}>
+          Clear completed
+        </button>
       </div>
     </div>
   );

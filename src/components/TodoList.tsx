@@ -1,4 +1,5 @@
 import { Todo } from './types';
+import './styles/TodoList.css';
 
 type TodoListProps = {
   todos: Todo[];
@@ -13,9 +14,9 @@ const TodoList = (props: TodoListProps) => {
   }
 
   return (
-    <ul>
+    <ul className='list-container'>
       {todos.map(({ isCompleted, title, id }) => (
-        <li key={id}>
+        <li key={id} className='list-item'>
           <input id={id} type='checkbox' checked={isCompleted} onChange={() => onToggleTodo(id)} />
           <label htmlFor={id} style={isCompleted ? { textDecoration: 'line-through' } : {}}>
             {title}
