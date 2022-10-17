@@ -31,3 +31,9 @@
   background: #666;
   color: beige;
 }
+
+.clear-completed-btn:disabled {
+  cursor: not-allowed;
+  background: transparent;
+  color: #444;
+}

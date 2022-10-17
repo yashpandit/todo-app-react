@@ -59,7 +59,11 @@ function App() {
       <div className='todo-actions-container'>
         <p>{filteredTodos.filter(notCompletedTodo).length} items left</p>
         <TodoFilters currentFilter={filter} updateFilter={onFilterChange} />
-        <button className='clear-completed-btn' onClick={clearCompletedTodos}>
+        <button
+          disabled={filteredTodos.filter(completedTodo).length === 0}
+          className='clear-completed-btn'
+          onClick={clearCompletedTodos}
+        >
           Clear completed
         </button>
       </div>
